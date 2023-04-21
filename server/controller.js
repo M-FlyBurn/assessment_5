@@ -1,7 +1,6 @@
 require('dotenv').config()
 const {CONNECTION_STRING} = process.env
 const Sequelize = require('sequelize')
-const { SELECT } = require('sequelize/types/query-types')
 
 const sequelize = new Sequelize(CONNECTION_STRING, {
     dialect: 'postgres', 
@@ -257,7 +256,7 @@ module.exports = {
 ,   getCities: (req,res) => {
     
         sequelize.query(
-        `SELECT c.name AS city, rating, co.country_id, co.name AS country
+        `SELECT c.name AS city, city_id, rating, co.country_id, co.name AS country
         FROM cities AS c 
         JOIN countries AS co
         ON c.country_id = co.country_id
